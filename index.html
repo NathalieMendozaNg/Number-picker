@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>Nathalie number picker</title>
+    <!-- Required meta tags -->
+    <meta charset="utf-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1, shrink-to-fit=no"
+    />
+
+    <!-- Bootstrap CSS -->
+    <link
+      rel="stylesheet"
+      href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+      integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T"
+      crossorigin="anonymous"
+    />
+    <style>
+      body {
+        font-family: "微軟正黑體";
+        background-color: #ffffe0;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <div class="row justify-content-center mt-4 ">
+        <div class="col-4">
+          <div class="input-group mb-2">
+            <div class="input-group-prepend">
+              <div class="input-group-text">最小號碼</div>
+            </div>
+            <input type="text" class="form-control" id="min" />
+          </div>
+        </div>
+        <div class="col-4">
+          <div class="input-group mb-2">
+            <div class="input-group-prepend">
+              <div class="input-group-text">最大號碼</div>
+            </div>
+            <input type="text" class="form-control" id="max" />
+          </div>
+        </div>
+        <button type="button" class="btn btn-secondary" id="ok">確認</button>
+      </div>
+      <div class="row justify-content-center m-3">
+        <!--數字跑的地方-->
+        <div style="width: 250px; height: 300px; background-color:gray; font-size: 80px;  " class="border" id="border"></div>
+      </div>
+      <div class="row justify-content-center">
+        <!--開始按鈕-->
+        <div>
+          <button type="button" class="btn btn-danger" id="start">開始</button>
+        </div>
+      </div>
+    </div>
+    <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script>
+      var min = document.getElementById("min");
+      var max = document.getElementById("max");
+      var mintext;
+      var maxtext;
+      //按下確認 讀取最小至最大數
+      function inputConfirm() {
+        mintext = parseInt(min.value);
+        maxtext = parseInt(max.value);
+        console.log(mintext);
+        console.log(maxtext);
+      }
+      document.getElementById("ok").onclick = inputConfirm;
+
+      //在框框裡跳出數字
+      function inputStart() {
+        //從最小值到最大值之間取得數字不重複的陣列
+        var ArrayR = [];
+        for (var i = mintext; i <= maxtext; i++) {
+          var number =
+            Math.floor(Math.random() * (maxtext - mintext + 1)) + mintext;
+          ArrayR.push(number);
+        }
+        var result = Array.from(new Set(ArrayR));
+        console.log(result);
+        var get = result.shift();
+        console.log(get);
+
+        var div = document.getElementsByClassName("border");
+        div[0].innerHTML = get;
+
+        document.getElementById("border").style = text;
+      }
+      document.getElementById("start").onclick = inputStart;
+    </script>
+    <script
+      src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+      integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+      crossorigin="anonymous"
+    ></script>
+    <script
+      src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
+      integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
+      crossorigin="anonymous"
+    ></script>
+    <script
+      src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
+      integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
+      crossorigin="anonymous"
+    ></script>
+  </body>
+</html>
